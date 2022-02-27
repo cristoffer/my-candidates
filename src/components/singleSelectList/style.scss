@@ -1,11 +1,17 @@
 @use '../../styles/variables/colors' as colors;
 
 .singleSelectList {
+	box-sizing: border-box;
 	width: auto;
 	display: inline-block;
+	position: relative;
+	width: 100%;
 	
 	&__button {
+		box-sizing: border-box;
 		border: 1px solid colors.$black;
+		padding: 0.25rem;
+		width: 100%;
 	}
 	
 	&__label {
@@ -13,18 +19,30 @@
 	}
 
 	&__list {
-		background: colors.$yellow;
-
+		position: absolute;
+		top: 100%;
+		min-width: 100%;
+		background: colors.$white;
+		display: none;
+		box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+		
 		&--open {
-
+			display: block;
+			z-index: 10;
 		}
 	}
 
 	&__listItem {
 		cursor: pointer;
+		padding: 0.25rem;
+		border: 1px solid colors.$silver;
+		border-right: none;
+		border-left: none;
+
 
 		&:hover {
-
+			color: colors.$white;
+			background: colors.$seaGreen;
 		}
 	}
 }

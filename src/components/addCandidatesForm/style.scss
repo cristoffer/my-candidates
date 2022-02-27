@@ -1,5 +1,6 @@
 @use '../../styles/variables/colors' as colors;
 @use '../../styles/mixins/mixins' as mixins;
+@use '../../styles/mixins/breakpoints' as breakpoints;
 
 .addCandidatesForm {
 
@@ -23,40 +24,60 @@
 	}
 
 	&__formContainer {
+		box-sizing: border-box;
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		background: colors.$white;
-		width: 50vw;
+		width: calc(100vw - 4rem);
 		padding: 2rem;
 		box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+		max-width: 30rem;
+
+		@include breakpoints.min-width('small') {
+			width: 50vw;
+		}
+		
 
 		&:before {
 			content: '';
 			display: block;
 			position: absolute;
-			width: 2rem;
-			left: -2rem;
+			width: 1rem;
+			left: -1rem;
 			top: 0;
-			height: 6rem;
+			height: 4.55rem;
 			transform-origin: bottom right;
 			transform: skewY(27deg);
 			background: darken(colors.$red, 5%);
 			z-index: -1;
+
+			@include breakpoints.min-width('small') {
+				width: 2rem;
+				left: -2rem;
+				height: 6rem;
+			}
 		}
 		&:after {
 			content: '';
 			display: block;
 			position: absolute;
 			width: 2rem;
-			left: 5rem;
-			top: -2rem;
-			height: 2rem;
+			left: 3rem;
+			top: -1rem;
+			height: 1rem;
 			transform-origin: bottom right;
 			transform: skewX(44deg);
 			background: darken(colors.$red, 5%);
 			z-index: -1;
+
+			@include breakpoints.min-width('small') {
+				width: 2rem;
+				left: 5rem;
+				top: -2rem;
+				height: 2rem;
+			}
 		}
 	}
 
@@ -69,16 +90,25 @@
 
 	&__formIcon {
 		position: absolute;
-		height: 7rem;
-		width: 7rem;
-		top: -2rem;
-		left: -2rem;
+		height: 5rem;
+		width: 5rem;
+		top: -1rem;
+		left: -1rem;
 		background: colors.$red;
 		color: colors.$white;
-		font-size: 6rem;
+		font-size: 5rem;
 		text-align: center;
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
 		@include mixins.verticalMiddle;
+
+		@include breakpoints.min-width('small') {
+			height: 7rem;
+			width: 7rem;
+			top: -2rem;
+			left: -2rem;
+			font-size: 6rem;
+
+		}
 	}
 
 	&__inputContainer {
@@ -93,9 +123,22 @@
 
 	}
 
+	&__delete {
+		font-size: 2rem;
+		cursor: pointer;
+		position: absolute;
+		right: 2rem;
+		top: 2rem;
+	}
+
 	&__buttonContainer {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		flex-wrap: wrap;
+
+		@include breakpoints.min-width('small') {
+			justify-content: space-between;
+		}
 	}
 }

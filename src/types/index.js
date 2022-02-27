@@ -1,10 +1,10 @@
 
 const candidateProgress = {
-	'1': 'Kontakt',
+	'1': 'Contact',
 	'2': 'Dialog',
-	'3': 'Intervju',
-	'4': 'Erbjudande',
-	'5': 'Avslutad'
+	'3': 'Interview',
+	'4': 'Offer',
+	'5': 'Completed'
 }
 
 const types = {

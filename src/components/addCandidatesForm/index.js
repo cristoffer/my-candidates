@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import CandidateService from '../../services/candidateService.js';
 import Button from '../button';
 import Input from '../input';
 import './style.scss';
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { AiOutlineUserAdd, AiOutlineDelete } from "react-icons/ai";
 import SingleSelectList from '../../components/singleSelectList';
 import types from '../../types'
 
@@ -39,13 +39,10 @@ export default function AddCandidatesForm ({ type = 'large', candidates, addCand
 
 	    if (!form.hasErrors) {
 	    	if (editCandidate) {
-	    		console.log('put')
 	    		CandidateService.put(candidates, {...newCandidate, id:editCandidate.id})
 	    			.then((response) => {
 		    			reset();
-	    				console.log('response', response)
 	    				addCandidates(response);
-	    				console.log(1)
 	    			})
 	    			.catch((e) => {
 		    			console.error(e)
@@ -66,10 +63,10 @@ export default function AddCandidatesForm ({ type = 'large', candidates, addCand
 	}
 
 	const handleDelete = () => {
-		CandidateService.delete(candidates, newCandidate)
+		CandidateService.delete(candidates, editCandidate.id)
 			.then((response) => {
-				addCandidates(response);
     			reset();
+				addCandidates(response);
 			})
 			.catch((e) => {
     			console.error(e)
@@ -77,7 +74,7 @@ export default function AddCandidatesForm ({ type = 'large', candidates, addCand
 	}
 
 	const selectProgressLevel = (value) => {
-		setNewCandidate({...newCandidate, progress: value});
+		setNewCandidate({...newCandidate, progress: value.value});
 	}
 
 	const handleChange = (e) => {
@@ -94,7 +91,7 @@ export default function AddCandidatesForm ({ type = 'large', candidates, addCand
 	return (
 		<div className="addCandidatesForm">
 			{useButton ?
-				<div className="addCandidatesForm__buttonContainer">
+				<div className="addCandidatesForm__addButtonContainer">
 					{type === 'large' ?
 						<Button label="Add new candidate" addClasses="button__fullWidth" onClick={() => setEdit(true)}/>
 					:
@@ -105,6 +102,11 @@ export default function AddCandidatesForm ({ type = 'large', candidates, addCand
 			{edit ?
 				<div className="addCandidatesForm__formContainerBackdrop">
 					<div className="addCandidatesForm__formContainer">
+						{editCandidate ?
+							<div className="addCandidatesForm__delete">
+								<AiOutlineDelete onClick={() => handleDelete()}/>
+							</div>
+						: ''}
 						<div className="addCandidatesForm__formIcon">
 							<span><AiOutlineUserAdd /></span>
 						</div>

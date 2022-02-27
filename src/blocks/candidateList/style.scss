@@ -1,14 +1,40 @@
+@use '../../styles/variables/colors' as colors;
 
 .candidateList {
+	padding-bottom: 3rem;
 
 	&__filterContainer {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__sortContainer {
+		flex-grow: 1;
+		padding: 0 1rem 0 0;
+	}
+
+	&__searchContainer {
+		flex-grow: 1;
+	}
+
+	&__input {
+		height: 1.3rem;
+		border: 1px solid colors.$black;
 	}
 
 	&__list {
 		
 		
+	}
+
+	&__noResult {
+		margin: 2rem 0;
+		text-align: center;
+	}
+
+	&__noResultMessage {
+		padding: 2rem;
 	}
 }

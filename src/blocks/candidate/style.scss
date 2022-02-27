@@ -1,19 +1,25 @@
 @use '../../styles/variables/colors' as colors;
 @use '../../styles/mixins/mixins' as mixins;
+@use '../../styles/mixins/breakpoints' as breakpoints;
 
 .candidate {
 	background: colors.$red;
-	height: 5rem;
+	height: 6rem;
 	margin-left: 2rem;
 	position: relative;
 	margin-top: 2rem;
-	padding-left: 5rem;
+	padding-left: 4rem;
 	box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	cursor: pointer;
+
+	@include breakpoints.min-width('small') {
+		padding-left: 5rem;
+		height: 5rem;
+	}
 
 	&--progress1 {
 		background: lighten(colors.$red, 12%);
@@ -45,6 +51,20 @@
 		z-index: -1;
 	}
 
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		height: 1rem;
+		width: 2rem;
+		left: 2rem;
+		top: -1rem;
+		transform-origin: bottom right;
+		transform: skewX(44deg);
+		background: darken(colors.$red, 5%);
+		z-index: -1;
+	}
+
 	&__initial {
 		background: colors.$white; 
 		color: colors.$red;
@@ -63,19 +83,45 @@
 		span {
 			vertical-align: middle;
 		}
+
+		&__progress {
+			font-size: 0.75rem;
+			font-weight: normal;
+			position: absolute;
+			bottom: 0.75rem;
+			left:0;
+			width: 100%;
+			text-align: center;
+
+			@include breakpoints.min-width('small') {
+				display: none;
+			}
+		}
 	}
 
 	&__property {
 		padding: 0.5rem;
 		color: colors.$white;
+
+		&--progress {
+			display: none;
+
+			@include breakpoints.min-width('small') {
+				display: block;
+			}
+		}
 	}
 
 	&__name {
 		color: colors.$white;
-		font-size: 2rem;
+		font-size: 1.5rem;
 		font-weight: bold;
 		display: flex;
 		flex-direction: column;	
+
+		@include breakpoints.min-width('small') {
+			font-size: 2rem;
+		}
 	}
 
 	&__email, &__address {

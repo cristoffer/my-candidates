@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import types from '../../types'
 import './style.scss';
-import Button from '../../components/button';
 import { BiCctv } from "react-icons/bi";
-import AddCandidatesForm from '../../components/addCandidatesForm';
-
 
 export default function Candidate({ candidate, edit }) {
 	const { candidateProgress } = types;
@@ -16,7 +13,8 @@ export default function Candidate({ candidate, edit }) {
 	return (
 		<li className={`candidate candidate--progress${candidate.progress}`} onClick={() => handleClick()}>
 			<div className="candidate__initial">
-				<span>{candidate.name[0]}</span>
+				<span className="candidate__initial__name">{candidate.name[0]}</span>
+				<div className="candidate__initial__progress">{candidateProgress[candidate.progress]}</div>
 			</div>
 			
 			<div className="candidate__name">

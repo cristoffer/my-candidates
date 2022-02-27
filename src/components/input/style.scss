@@ -3,10 +3,12 @@
 .input {
 	position: relative;
 
+
 	&__field {
 		font-size: 1.25rem;
 		border: 1px solid colors.$dark;
 		width: 100%;
+		box-sizing: border-box;
 
 		&--error {
 			border-color: colors.$red;
@@ -24,9 +26,7 @@
 	&__errormsg {
 		position: absolute;
 		color: colors.$red;
+		top: 100%;
+    	left: 0;
 	}
-
-
-
-	
 }

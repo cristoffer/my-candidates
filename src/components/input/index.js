@@ -9,7 +9,6 @@ export default function Input ({type, value, name, onChange, schema, min, max, s
 		onChange(e);
 
 		if (schema) {
-			const er = schema(e.target.value);
 			setHasErrors(!e.target.value || !schema(e.target.value) ? true : false);
 		} else {
 			setHasErrors(!e.target.value)

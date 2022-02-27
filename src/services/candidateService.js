@@ -16,7 +16,6 @@ async function loadFakeData() {
 const CandidateService = {
 
 	fetch: function () {
-		console.log('fetch')
 		return new Promise((resolve,reject) => {
 			const stored = localStorage.getItem('candidates');
 
@@ -47,7 +46,6 @@ const CandidateService = {
 	put: function (candidates, candidate) {
 		return new Promise((resolve,reject) => {
 			try {
-				console.log(candidate)
 				const list = candidates.filter((item) => item.id !== candidate.id);
 				list.push(candidate);
 
@@ -60,8 +58,8 @@ const CandidateService = {
 		})
 	},
 
-	delete: function (candidates, candidate) {
-		const list = candidates.filter((item) => item.id !== candidate.id);
+	delete: function (candidates, candidateId) {
+		const list = candidates.filter((item) => item.id !== candidateId);
 		return new Promise((resolve,reject) => {
 			try {
 				localStorage.setItem('candidates', JSON.stringify({candidates: list}));
@@ -106,19 +104,15 @@ const CandidateService = {
 		});
 
 		if (errors.length > 0) {
-		    errors.forEach(function (error) {
-		    	console.log(error.message);
-			});
 			return {hasErrors: true, errors: errors};
 		} else {
-		    console.log("info is valid");
 		    return {hasErrors: false};
 		}
 	},
 
 	schema: {
 	  name: function (value) {
-	    return /^([A-Z][a-z\-]* )+[A-Z][a-z\-]*( \w+\.?)?$/.test(value);
+	    return /^([A-ZA-ZÅÄÖ][a-za-zåäö\-]* )+[A-ZA-ZÅÄÖ][a-za-zåäö\-]*( \w+\.?)?$/.test(value);
 	  },
 	  age: function (value) {
 	    return !isNaN(value) && value >= 18;

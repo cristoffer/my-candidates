@@ -6,8 +6,6 @@ import SingleSelectList from '../../components/singleSelectList';
 import AddCandidatesForm from '../../components/addCandidatesForm';
 import './style.scss';
 
-
-
 export default function CandidateList () {
 	const [isLoading, setIsLoading] = useState(false); 
 	const [sortBy, setSortBy] = useState({value: 'name', label: 'Name'});
@@ -22,7 +20,6 @@ export default function CandidateList () {
     	
 		CandidateService.fetch()
 			.then((response) => {
-				console.log('response', response);
 				setAllCandidates(response.candidates)
 			})
 			.catch((e) => {
@@ -52,8 +49,12 @@ export default function CandidateList () {
 	return (
 		<div className="candidateList">
 			<div className="candidateList__filterContainer">
-				<input type="text" onChange={(e) => setSearch(e.target.value)} value={search} placeholder="Search"/>
-				<SingleSelectList list={sortList} label="Sort by" onSelect={setSortBy} />
+					<div className="candidateList__sortContainer">
+						<SingleSelectList list={sortList} label="Sort by" onSelect={setSortBy} />
+					</div>
+					<div className="candidateList__searchContainer">
+						<input className="candidateList__input" type="text" onChange={(e) => setSearch(e.target.value)} value={search} placeholder="Search"/>
+					</div>
 				<AddCandidatesForm type="small" candidates={allCandidates} addCandidates={setAllCandidates} />
 			</div>
 			{candidates && candidates.length ?
@@ -66,11 +67,11 @@ export default function CandidateList () {
 				<div className="candidateList__noResult">
 					<div>
 						{search && allCandidates.length ?
-							<span>No results matching "{search}"</span>
+							<div className="candidateList__noResultMessage">No results matching "{search}"</div>
 						:
-							<span>No candidates</span>
+							<div className="candidateList__noResultMessage">No candidates</div>
 						}
-						<AddCandidatesForm type="large" candidates={allCandidates} addCandidates={setAllCandidates} />
+						<AddCandidatesForm type="small" candidates={allCandidates} addCandidates={setAllCandidates} />
 					</div>
 				</div>
 			}
