@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function SingleSelectList ({list, onSelect, label}) {
 	const [selected, setSelected] = useState(list[0]);
 	const [toggleDropDown, setToggleDropDown] = useState(false);
 
 	const handleSelect = (item) => {
-		console.log('********')
-		console.log(item)
 		setSelected(item);
 		onSelect(item);
 	}
-
 
 	return (
 		<div className="singleSelectList">

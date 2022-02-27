@@ -3,6 +3,7 @@ import Candidate from '../candidate';
 import CandidateService from '../../services/candidateService.js';
 import LoadingSpinner from '../../components/loadingSpinner';
 import SingleSelectList from '../../components/singleSelectList';
+import AddCandidatesForm from '../../components/addCandidatesForm';
 import './style.scss';
 
 export default function CandidateList () {
@@ -11,7 +12,7 @@ export default function CandidateList () {
 	const [candidates, setCandidates] = useState([]);
 	const [allCandidates, setAllCandidates] = useState([]);
 	const [search, setSearch] = useState('');
-	const sortList = [{label: 'Name', value: 'name'},{label: 'Age', value: 'age'},{label: 'Progress', value: 'progress'}]
+	const sortList = [{label: 'Name', value: 'name'},{label: 'Age', value: 'age'},{label: 'Progress', value: 'progress'}];
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -22,11 +23,9 @@ export default function CandidateList () {
 				setAllCandidates(response.candidates)
 			})
 			.catch((e) => {
-				console.log('catch')
 				console.error(e)
 			})
 			.then(() => {
-				console.log('last')
 				setIsLoading(false);
 			})
   	}, []);
@@ -36,7 +35,7 @@ export default function CandidateList () {
 	  		const list = CandidateService.sortBy(allCandidates, sortBy.value);
 	  		setCandidates(CandidateService.filter(list, search));
 	  	}
-  	}, [sortBy, allCandidates, search])
+  	}, [sortBy, allCandidates, search]);
 
 	return (
 		<div className="candidateList">
@@ -44,13 +43,24 @@ export default function CandidateList () {
 				<input type="text" onChange={(e) => setSearch(e.target.value)} value={search} placeholder="Search"/>
 				<SingleSelectList list={sortList} label="Sort by" onSelect={setSortBy} />
 			</div>
-			<ul className="candidateList__list">
-				{candidates.map((item, key) => 
-					<Candidate candidate={item} key={key} />
-				)}
-
-			</ul>
-
+			{candidates && candidates.length ?
+				<ul className="candidateList__list">
+					{candidates.map((item, key) => 
+						<Candidate candidate={item} key={key} />
+					)}
+				</ul>
+			: 
+				<div className="candidateList__noResult">
+					<div>
+						{search && allCandidates.length ?
+							<span>No results matching "{search}"</span>
+						:
+							<span>No candidates</span>
+						}
+						<AddCandidatesForm type="large" candidates={allCandidates} addCandidates={setAllCandidates} />
+					</div>
+				</div>
+			}
 			<LoadingSpinner isLoading={isLoading} />
 		</div>
 	);
