@@ -1,0 +1,53 @@
+{
+	"candidates":[
+		{
+			"name": "Cristoffer Carlberg",
+			"age": 36,
+			"email": "cristoffer.carlberg@gmail.com",
+			"address": "Tomtebogatan 44",
+			"progress": "3"
+		},
+		{
+			"name": "Ann Vändare",
+			"age": 31,
+			"email": "ann.vandare@email.com",
+			"address": "Gatan 12",
+			"progress": 4
+		},
+		{
+			"name": "Candy Dette",
+			"age": 26,
+			"email": "candy.dette@mail.com",
+			"address": "Gatan 8",
+			"progress": 1
+		},
+		{
+			"name": "John Doe",
+			"age": 29,
+			"email": "john.doe@mail.com",
+			"address": "Gatan 11",
+			"progress": 1
+		},
+		{
+			"name": "Jane Doe",
+			"age": 26,
+			"email": "jane.doe@mail.com",
+			"address": "Gatan 21",
+			"progress": 1
+		},
+		{
+			"name": "Mike Mikkeller",
+			"age": 22,
+			"email": "mike.mikkeller@mail.com",
+			"address": "Brewstreet 90",
+			"progress": 3
+		},
+		{
+			"name": "Gandalf Grey",
+			"age": 26,
+			"email": "gandalf.grey@midgaard.com",
+			"address": "Shire road 83b",
+			"progress": 1
+		}
+	]
+}
