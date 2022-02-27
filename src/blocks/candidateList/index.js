@@ -10,6 +10,7 @@ export default function CandidateList () {
 	const [sortBy, setSortBy] = useState({value: 'name'});
 	const [candidates, setCandidates] = useState([]);
 	const [allCandidates, setAllCandidates] = useState([]);
+	const [search, setSearch] = useState('');
 	const sortList = [{label: 'Name', value: 'name'},{label: 'Age', value: 'age'},{label: 'Progress', value: 'progress'}]
 
 	useEffect(() => {
@@ -32,13 +33,15 @@ export default function CandidateList () {
 
   	useEffect(() => {
 	  	if (allCandidates && allCandidates.length) {
-	  		setCandidates(CandidateService.sortBy(allCandidates,sortBy.value));
+	  		const list = CandidateService.sortBy(allCandidates, sortBy.value);
+	  		setCandidates(CandidateService.filter(list, search));
 	  	}
-  	}, [sortBy, allCandidates])
+  	}, [sortBy, allCandidates, search])
 
 	return (
 		<div className="candidateList">
 			<div className="candidateList__filterContainer">
+				<input type="text" onChange={(e) => setSearch(e.target.value)} value={search} placeholder="Search"/>
 				<SingleSelectList list={sortList} label="Sort by" onSelect={setSortBy} />
 			</div>
 			<ul className="candidateList__list">
