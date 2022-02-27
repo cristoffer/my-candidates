@@ -1,0 +1,10 @@
+
+.candidate {
+	width: 100%;
+	display: table-row;
+
+	&__property {
+		display: table-cell;
+		padding: 0.5rem;
+	}
+}

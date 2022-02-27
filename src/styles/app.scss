@@ -1,0 +1,19 @@
+@use 'mixins/breakpoints' as breakpoints;
+
+.app {
+
+	&__header {
+
+	}
+
+	&__body {
+		max-width: 45.9375rem;
+		margin: 0 auto;
+		padding: 1rem;
+
+		@include breakpoints.min-width('small') {
+			padding: 1rem 0;
+		}
+		
+	}
+}

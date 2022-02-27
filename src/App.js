@@ -1,14 +1,13 @@
-import './App.css';
-import './style.scss';
+import './styles/app.scss';
 import CandidateList from './blocks/candidateList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app__header">
         
       </header>
-      <div className="AppBody">
+      <div className="app__body">
         <CandidateList />
       </div>
     </div>

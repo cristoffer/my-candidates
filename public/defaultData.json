@@ -5,7 +5,7 @@
 			"age": 36,
 			"email": "cristoffer.carlberg@gmail.com",
 			"address": "Tomtebogatan 44",
-			"progress": "3"
+			"progress": 3
 		},
 		{
 			"name": "Ann Vändare",
@@ -26,7 +26,7 @@
 			"age": 29,
 			"email": "john.doe@mail.com",
 			"address": "Gatan 11",
-			"progress": 1
+			"progress": 2
 		},
 		{
 			"name": "Jane Doe",
@@ -47,7 +47,7 @@
 			"age": 26,
 			"email": "gandalf.grey@midgaard.com",
 			"address": "Shire road 83b",
-			"progress": 1
+			"progress": 5
 		}
 	]
 }
