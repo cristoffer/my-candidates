@@ -1,5 +1,30 @@
+@use '../../styles/variables/colors' as colors;
 
 .singleSelectList {
-
+	width: auto;
+	display: inline-block;
 	
+	&__button {
+		border: 1px solid colors.$black;
+	}
+	
+	&__label {
+
+	}
+
+	&__list {
+		background: colors.$yellow;
+
+		&--open {
+
+		}
+	}
+
+	&__listItem {
+		cursor: pointer;
+
+		&:hover {
+
+		}
+	}
 }

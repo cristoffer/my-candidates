@@ -1,9 +1,26 @@
+@use '../../styles/variables/colors' as colors;
 
 .button {
 	cursor: pointer;
 	padding: 0.5rem;
+	font-weight: bold;
 
 	&__fullWidth {
 		width: 100%;
+	}
+
+	&__horizontalPadding {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+
+	&__cancel {
+		background: colors.$red;
+		color: colors.$white;
+	}
+
+	&__submit {
+		background: colors.$seaGreen;
+		color: colors.$white;
 	}
 }

@@ -1,10 +1,96 @@
+@use '../../styles/variables/colors' as colors;
+@use '../../styles/mixins/mixins' as mixins;
 
 .candidate {
-	width: 100%;
-	display: table-row;
+	background: colors.$red;
+	height: 5rem;
+	margin-left: 2rem;
+	position: relative;
+	margin-top: 2rem;
+	padding-left: 5rem;
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+
+	&--progress1 {
+		background: lighten(colors.$red, 12%);
+	}
+	&--progress2 {
+		background: lighten(colors.$red, 9%);
+	}
+	&--progress3 {
+		background: lighten(colors.$red, 6%);
+	}
+	&--progress4 {
+		background: lighten(colors.$red, 3%);
+	}
+	&--progress5 {
+		background: lighten(colors.$red, 0);
+	}
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		height: 100%;
+		width: 2rem;
+		left: -2rem;
+		bottom: 0;
+		transform-origin: bottom right;
+		transform: skewY(27deg);
+		background: darken(colors.$red, 5%);
+		z-index: -1;
+	}
+
+	&__initial {
+		background: colors.$white; 
+		color: colors.$red;
+		font-size: 2rem;
+		font-weight: bold;
+		height: 100%;
+		width: 5rem;
+		position: absolute;
+		left: -2rem;
+		top: -1rem;
+		text-align: center;
+		box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+
+		@include mixins.verticalMiddle;
+
+		span {
+			vertical-align: middle;
+		}
+	}
 
 	&__property {
-		display: table-cell;
 		padding: 0.5rem;
+		color: colors.$white;
 	}
+
+	&__name {
+		color: colors.$white;
+		font-size: 2rem;
+		font-weight: bold;
+		display: flex;
+		flex-direction: column;	
+	}
+
+	&__email, &__address {
+		color: colors.$white;
+		font-size: 1rem;
+		font-weight: normal;
+	}
+
+	&__icon {
+		&--cctv {
+			font-size: 1.5rem;
+			vertical-align: middle;
+			margin-right: 0.5rem
+		}
+	}
+
+	&__editContainer {}
 }

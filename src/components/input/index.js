@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './style.scss';
 
-export default function Input ({type, value, name, onChange, schema, min, max, step}) {
+export default function Input ({type, value, name, onChange, schema, min, max, step, placeholder}) {
 	const [hasBlurred, setHasBlurred] = useState(false);
 	const [hasErrors, setHasErrors] = useState(true);
 
@@ -22,9 +22,9 @@ export default function Input ({type, value, name, onChange, schema, min, max, s
 	}
 
 	return (
-		<div className={`input ${hasErrors && hasBlurred ? 'input--error':''} ${hasBlurred ? 'input--blurred' : ''} ${hasBlurred && !hasErrors ? 'input--valid': ''}`}>
+		<div className="input">
 			<input 
-				className="input__field" 
+				className={`input__field ${hasErrors && hasBlurred ? 'input__field--error':''} ${hasBlurred ? 'input__field--blurred' : ''} ${hasBlurred && !hasErrors ? 'input__field--valid': ''}`} 
 				type={type} 
 				value={value} 
 				name={name} 
@@ -32,6 +32,7 @@ export default function Input ({type, value, name, onChange, schema, min, max, s
 				onBlur={(e) => handleBlur(e)} 
 				min={min}
 				max={max}
+				placeholder={placeholder}
 				step={step}/>
 			{hasErrors && hasBlurred ?
 				<span className="input__errormsg">Something is not right</span>

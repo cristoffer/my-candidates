@@ -1,22 +1,32 @@
+@use '../../styles/variables/colors' as colors;
+
 .input {
-
-	&--error {
-		background: red;
-	}
-
-	&--valid {
-
-	}
-
-	&--blurred {
-		
-	}
+	position: relative;
 
 	&__field {
+		font-size: 1.25rem;
+		border: 1px solid colors.$dark;
+		width: 100%;
 
+		&--error {
+			border-color: colors.$red;
+		}
+
+		&--valid {
+			border-color: colors.$seaGreen;
+		}
+
+		&--blurred {
+			
+		}
 	}
 
 	&__errormsg {
-
+		position: absolute;
+		color: colors.$red;
 	}
+
+
+
+	
 }

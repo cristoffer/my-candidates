@@ -2,11 +2,13 @@
 .candidateList {
 
 	&__filterContainer {
-
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 	}
 
 	&__list {
-		display: table;
+		
 		
 	}
 }

@@ -6,11 +6,14 @@ import SingleSelectList from '../../components/singleSelectList';
 import AddCandidatesForm from '../../components/addCandidatesForm';
 import './style.scss';
 
+
+
 export default function CandidateList () {
 	const [isLoading, setIsLoading] = useState(false); 
-	const [sortBy, setSortBy] = useState({value: 'name'});
+	const [sortBy, setSortBy] = useState({value: 'name', label: 'Name'});
 	const [candidates, setCandidates] = useState([]);
 	const [allCandidates, setAllCandidates] = useState([]);
+	const [editCandidate, setEditCandidate] = useState(false)
 	const [search, setSearch] = useState('');
 	const sortList = [{label: 'Name', value: 'name'},{label: 'Age', value: 'age'},{label: 'Progress', value: 'progress'}];
 
@@ -31,22 +34,32 @@ export default function CandidateList () {
   	}, []);
 
   	useEffect(() => {
+  		setEditCandidate(false)
 	  	if (allCandidates && allCandidates.length) {
 	  		const list = CandidateService.sortBy(allCandidates, sortBy.value);
 	  		setCandidates(CandidateService.filter(list, search));
 	  	}
   	}, [sortBy, allCandidates, search]);
 
+  	const handleEdit = (candidate) => {
+  		setEditCandidate(candidate);
+  	} 
+
+  	const handleCancel = () => {
+  		setEditCandidate(false);
+  	}
+
 	return (
 		<div className="candidateList">
 			<div className="candidateList__filterContainer">
 				<input type="text" onChange={(e) => setSearch(e.target.value)} value={search} placeholder="Search"/>
 				<SingleSelectList list={sortList} label="Sort by" onSelect={setSortBy} />
+				<AddCandidatesForm type="small" candidates={allCandidates} addCandidates={setAllCandidates} />
 			</div>
 			{candidates && candidates.length ?
 				<ul className="candidateList__list">
 					{candidates.map((item, key) => 
-						<Candidate candidate={item} key={key} />
+						<Candidate candidate={item} key={key} edit={handleEdit}/>
 					)}
 				</ul>
 			: 
@@ -61,6 +74,9 @@ export default function CandidateList () {
 					</div>
 				</div>
 			}
+			{editCandidate ?
+				<AddCandidatesForm candidates={allCandidates} addCandidates={setAllCandidates} editCandidate={editCandidate} cancel={() => handleCancel()} useButton={false}/>
+			: ''}
 			<LoadingSpinner isLoading={isLoading} />
 		</div>
 	);

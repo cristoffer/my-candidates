@@ -1,11 +1,101 @@
+@use '../../styles/variables/colors' as colors;
+@use '../../styles/mixins/mixins' as mixins;
 
-.addCandidateForm {
+.addCandidatesForm {
 
 	&__buttonContainer {
 
 	}
 
+	&__addButton {
+		font-size: 4rem;
+		cursor: pointer;
+	}
+
+	&__formContainerBackdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0,0.5);
+		z-index: 10;
+	}
+
 	&__formContainer {
-		
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: colors.$white;
+		width: 50vw;
+		padding: 2rem;
+		box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 2rem;
+			left: -2rem;
+			top: 0;
+			height: 6rem;
+			transform-origin: bottom right;
+			transform: skewY(27deg);
+			background: darken(colors.$red, 5%);
+			z-index: -1;
+		}
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 2rem;
+			left: 5rem;
+			top: -2rem;
+			height: 2rem;
+			transform-origin: bottom right;
+			transform: skewX(44deg);
+			background: darken(colors.$red, 5%);
+			z-index: -1;
+		}
+	}
+
+	&__formContent {
+		margin-top: 5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	&__formIcon {
+		position: absolute;
+		height: 7rem;
+		width: 7rem;
+		top: -2rem;
+		left: -2rem;
+		background: colors.$red;
+		color: colors.$white;
+		font-size: 6rem;
+		text-align: center;
+		box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+		@include mixins.verticalMiddle;
+	}
+
+	&__inputContainer {
+		margin-bottom: 2rem;
+	}
+						
+	&__errors {
+		color: colors.$red;
+	}
+
+	&__error {
+
+	}
+
+	&__buttonContainer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 	}
 }

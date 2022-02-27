@@ -21,7 +21,7 @@ const CandidateService = {
 			const stored = localStorage.getItem('candidates');
 
 			if (stored) {
-				resolve(stored);
+				resolve(JSON.parse(stored));
 			} else {
 				loadFakeData()
 					.then(data => resolve(data))
@@ -35,7 +35,7 @@ const CandidateService = {
 	post: function (candidates) {
 		return new Promise((resolve,reject) => {
 			try {
-				localStorage.setItem('candidates', {candidates: candidates});
+				localStorage.setItem('candidates', JSON.stringify({candidates: candidates}));
 				resolve(candidates);
 			}
 			catch {
@@ -44,31 +44,56 @@ const CandidateService = {
 		})
 	},
 
-	put: function (candidate) {
+	put: function (candidates, candidate) {
+		return new Promise((resolve,reject) => {
+			try {
+				console.log(candidate)
+				const list = candidates.filter((item) => item.id !== candidate.id);
+				list.push(candidate);
 
+				localStorage.setItem('candidates', JSON.stringify({candidates: list}));
+				resolve(list);
+			}
+			catch {
+				reject();
+			}
+		})
 	},
 
-	delete: function (candidate) {
-
+	delete: function (candidates, candidate) {
+		const list = candidates.filter((item) => item.id !== candidate.id);
+		return new Promise((resolve,reject) => {
+			try {
+				localStorage.setItem('candidates', JSON.stringify({candidates: list}));
+				resolve(list);
+			}
+			catch {
+				reject();
+			}
+		})
 	},
 
 	sortBy: function (list, sortBy) {
-		return [...list].sort((a,b) => {
-			if (a[sortBy] > b[sortBy]) {
-			    return 1;
-			}
-			
-			if (a[sortBy] < b[sortBy]) {
-			    return -1;
-			}
-			
-			return 0;
-		})
+		if (list && list.length) { 
+			return [...list].sort((a,b) => {
+				if (a[sortBy] > b[sortBy]) {
+				    return 1;
+				}
+				
+				if (a[sortBy] < b[sortBy]) {
+				    return -1;
+				}
+				
+				return 0;
+			})
+		} else {
+			return [];
+		}
 	},
 
 	filter: function(list, search) {
 		if (search) {
-			return list.filter((item) => item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 || item.address.toLowerCase().indexOf(search.toLowerCase()) > -1 || item.email.toLowerCase().indexOf(search.toLowerCase()) > -1);
+			return list.filter((item) => item.name.toLowerCase().indexOf(search.toLowerCase()) > -1 || item.email.toLowerCase().indexOf(search.toLowerCase()) > -1);
 		}
 		return list;
 	},
@@ -96,13 +121,13 @@ const CandidateService = {
 	    return /^([A-Z][a-z\-]* )+[A-Z][a-z\-]*( \w+\.?)?$/.test(value);
 	  },
 	  age: function (value) {
-	    return !isNaN(value) && parseInt(value) === value && value >= 18;
+	    return !isNaN(value) && value >= 18;
 	  },
 	  email: function (value) {
 	    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
 	  },
 	  address: function (value) {
-	    return /(\d{1,}) [a-zA-Z0-9\s]+(\.)? [a-zA-Z]+(\,)? [A-Z]{2} [0-9]{5,6}/.test(value);
+	    return value && value.length > 3 ? true : false;
 	  }
 	}
 }

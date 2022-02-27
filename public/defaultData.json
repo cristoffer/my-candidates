@@ -1,6 +1,7 @@
 {
 	"candidates":[
 		{
+			"id": 1,
 			"name": "Cristoffer Carlberg",
 			"age": 36,
 			"email": "cristoffer.carlberg@gmail.com",
@@ -8,6 +9,7 @@
 			"progress": 3
 		},
 		{
+			"id": 2,
 			"name": "Ann Vändare",
 			"age": 31,
 			"email": "ann.vandare@email.com",
@@ -15,6 +17,7 @@
 			"progress": 4
 		},
 		{
+			"id": 3,
 			"name": "Candy Dette",
 			"age": 26,
 			"email": "candy.dette@mail.com",
@@ -22,6 +25,7 @@
 			"progress": 1
 		},
 		{
+			"id": 4,
 			"name": "John Doe",
 			"age": 29,
 			"email": "john.doe@mail.com",
@@ -29,6 +33,7 @@
 			"progress": 2
 		},
 		{
+			"id": 5,
 			"name": "Jane Doe",
 			"age": 26,
 			"email": "jane.doe@mail.com",
@@ -36,6 +41,7 @@
 			"progress": 1
 		},
 		{
+			"id": 6,
 			"name": "Mike Mikkeller",
 			"age": 22,
 			"email": "mike.mikkeller@mail.com",
@@ -43,6 +49,7 @@
 			"progress": 3
 		},
 		{
+			"id": 7,
 			"name": "Gandalf Grey",
 			"age": 26,
 			"email": "gandalf.grey@midgaard.com",
