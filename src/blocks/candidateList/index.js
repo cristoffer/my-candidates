@@ -35,6 +35,8 @@ export default function CandidateList () {
 	  	if (allCandidates && allCandidates.length) {
 	  		const list = CandidateService.sortBy(allCandidates, sortBy.value);
 	  		setCandidates(CandidateService.filter(list, search));
+	  	} else {
+	  		setCandidates([]);
 	  	}
   	}, [sortBy, allCandidates, search]);
 
